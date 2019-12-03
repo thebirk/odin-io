@@ -14,6 +14,7 @@ File_Writer :: struct {
 }
 
 file_write_proc :: proc(using w: ^File_Writer, data: []byte) -> (int, Error) {
+    if  len(data) == 0 do return 0, .Ok;
     if handle == os.INVALID_HANDLE do return 0, .Invalid_Handle;
     os.write(handle, data);
     return len(data), .Ok;
@@ -70,6 +71,7 @@ File_Reader :: struct {
 }
 
 file_read_proc :: proc(using r: ^File_Reader, data: []byte) -> (int, Error) {
+    if len(data) == 0 do return 0, .Ok;
     if handle == os.INVALID_HANDLE do return 0, .Invalid_Handle;
 
     l, err := os.read(r.handle, data);

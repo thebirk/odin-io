@@ -19,16 +19,6 @@ Error :: enum {
 }
 
 
-/*
-Another possible base structure could be:
-
-Writer :: struct {
-    write_proc: proc(writer: ^Writer, data: []byte) -> (int, Error),
-    user_data: any,
-}
-*/
-
-
 Writer :: struct {
     // Could also include some more specific actions, like `close` and `flush`
     write_proc: proc(writer: ^Writer, data: []byte) -> (int, Error),
